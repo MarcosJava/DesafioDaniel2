@@ -19,13 +19,49 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _bandaDao = [BandaDao bandaDaoInstance];
- 
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.delegate = self;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    UIBarButtonItem *barButtonFavorito = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(favoritoSegue)];
+    self.navigationItem.rightBarButtonItem = barButtonFavorito;
+    
+    
+    [self testandoGesture];
 }
+
+-(void) testandoGesture{
+    UISwipeGestureRecognizer *gesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperr:)];
+    gesture.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [self.tableView addGestureRecognizer:gesture];
+}
+
+-(void) swiperr: (UIGestureRecognizer*) gesto {
+    
+    if (gesto.state == UIGestureRecognizerStateCancelled) {
+        CGPoint ponto = [gesto locationInView:self.tableView];
+        NSIndexPath *index = [self.tableView indexPathForRowAtPoint:ponto];
+        
+        if (index) {
+            NSLog(@"Favoritaaaahhh Boioolllaaa");
+        }
+    }
+    
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+-(void) favoritoSegue {
+    NSLog(@"Bandas preferidas");
+    for (Banda *banda in _bandaDao.bandasPreferidas) {
+        NSLog(@"%@",banda.nome);
+    }
+}
+
 
 #pragma mark - Table view data source
 
@@ -40,61 +76,57 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    BandasTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cells" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
-    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-    [cell addGestureRecognizer:swipeLeft];
-    
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(didSwipe:)];
-    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
-    [cell addGestureRecognizer:swipeRight];
-    
-    
+    static NSString *reuseIdentifier = @"Cells";
+    BandasTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (!cell) {
+        cell = [[BandasTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    }
     
     Banda *banda = [_bandaDao buscaBandaPor:indexPath.row];
     cell.bandaNome.text = banda.nome;
-
     cell.bandaImagem.image = banda.foto;
-    
     
     return cell;
 }
-- (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
-    
-    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
-        NSLog(@"Swipe Left");
-    } else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
-        NSLog(@"Swipe Right");
-    } else if (swipe.direction == UISwipeGestureRecognizerDirectionUp) {
-        NSLog(@"Swipe Up");
-    } else if (swipe.direction == UISwipeGestureRecognizerDirectionDown) {
-        NSLog(@"Swipe Down");
+
+
+#pragma mark - Table view delegates
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSLog(@"delete");
     }
 }
 
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
+/***
+    Adiciona os botões
+ ***/
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Favorito" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        NSLog(@"favoritando !");
+        
+        //[self.tableView reloadSections:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_bandaDao addBandaPreferida:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade]; // efeito + reloadData
 
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+    }];
+    editAction.backgroundColor = [UIColor blueColor];
+    
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Excluir"  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         [_bandaDao removeBanda:indexPath.row];
-        [self.tableView reloadData];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade]; // efeito + reloadData
+        NSLog(@"removendo !");
+        
+    }];
+    deleteAction.backgroundColor = [UIColor redColor];
+    
+    return @[deleteAction,editAction];
 }
 
 @end

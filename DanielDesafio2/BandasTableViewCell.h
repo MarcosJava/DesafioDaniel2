@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MGSwipeTableCell.h>
 
-@interface BandasTableViewCell : UITableViewCell
+@interface BandasTableViewCell : MGSwipeTableCell
 @property (weak, nonatomic) IBOutlet UIImageView *bandaImagem;
 @property (weak, nonatomic) IBOutlet UILabel *bandaNome;
 

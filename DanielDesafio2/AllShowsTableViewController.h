@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MGSwipeTableCell.h>
 #import "Banda.h"
 #import "BandaDao.h"
 
-@interface AllShowsTableViewController : UITableViewController
+@interface AllShowsTableViewController : UITableViewController<MGSwipeTableCellDelegate>
 @property (strong) BandaDao *bandaDao;
 @property (strong) Banda *banda;
 @end
