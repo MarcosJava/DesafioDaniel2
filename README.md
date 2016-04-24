@@ -8,7 +8,7 @@ E tem que mostrar soh os ícones das bandas arredondadas, ou seja, não eh uma t
 Alem disso tem que mostrar um mapa com o zoom bem perto que de pra ver a rua e seu nome ! <br />
 
 <br /><br />
-<h1>Master's challenge. <h1 />
+<h1>Master's challenge. </h1>
 The project is used : <br />
 A list of musics and it has a gesture recognizer with swipe left. <br />
 When it's used swipe left, this band goes to favorite band.<br />
