@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Opw-R3-hpC">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <scenes>
+        <!--Desafio 1-->
+        <scene sceneID="GCQ-rQ-elv">
+            <objects>
+                <viewController id="t5g-kj-dle" customClass="MapaZoomViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ozo-aZ-DVF"/>
+                        <viewControllerLayoutGuide type="bottom" id="HV0-oK-FYY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zpj-iL-zbJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dyX-bL-oDe">
+                                <rect key="frame" x="0.0" y="19" width="375" height="598"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Desafio 1" image="dumbbell.png" id="gF6-7b-jLU"/>
+                    <connections>
+                        <outlet property="mapa" destination="dyX-bL-oDe" id="bIh-pe-CLP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Phv-e5-XSz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989.5" y="502.5"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="nr3-uu-7qJ">
+            <objects>
+                <tabBarController id="Opw-R3-hpC" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="2Ob-3B-sTi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="aSF-ED-UzR" kind="relationship" relationship="viewControllers" id="Bqf-2t-e4j"/>
+                        <segue destination="t5g-kj-dle" kind="relationship" relationship="viewControllers" id="NUx-Ic-sPI"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UyN-1G-mD0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="170" y="173"/>
+        </scene>
+        <!--Desafio 2-->
+        <scene sceneID="OLs-fj-ASJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aSF-ED-UzR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Desafio 2" image="animal-footprint.png" id="1dx-do-okN"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7pT-g6-8Mu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TEx-0b-Eai" kind="relationship" relationship="rootViewController" id="Rzw-1b-2dG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptj-3F-jon" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989.5" y="-250.5"/>
+        </scene>
+        <!--All Shows Table View Controller-->
+        <scene sceneID="xA0-MI-xUv">
+            <objects>
+                <tableViewController id="TEx-0b-Eai" customClass="AllShowsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="28" sectionFooterHeight="28" id="pA2-mA-vWj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cells" rowHeight="57" id="b1r-lO-Jsi" customClass="BandasTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="375" height="57"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b1r-lO-Jsi" id="iMv-Pn-h02">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFG-qg-slJ">
+                                            <rect key="frame" x="8" y="6" width="70" height="42"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome da Banda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6an-fg-Ol2">
+                                            <rect key="frame" x="86" y="8" width="281" height="40"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bandaImagem" destination="JFG-qg-slJ" id="7jn-P4-l8f"/>
+                                    <outlet property="bandaNome" destination="6an-fg-Ol2" id="Ph9-k7-ABF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TEx-0b-Eai" id="YgQ-Em-DD1"/>
+                            <outlet property="delegate" destination="TEx-0b-Eai" id="wyf-VP-yJy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="e2a-jG-rNS"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rfP-cE-Hvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1565.5" y="-236.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="animal-footprint.png" width="30" height="30"/>
+        <image name="dumbbell.png" width="30" height="30"/>
+    </resources>
+</document>
