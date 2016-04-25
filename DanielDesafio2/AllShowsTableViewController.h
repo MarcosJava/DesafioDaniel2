@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MGSwipeTableCell.h>
+#import "BandaFavoritaViewController.h"
 #import "Banda.h"
 #import "BandaDao.h"
 

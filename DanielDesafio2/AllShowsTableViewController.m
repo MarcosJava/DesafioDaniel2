@@ -38,7 +38,7 @@
 
 -(void) swiperr: (UIGestureRecognizer*) gesto {
     
-    if (gesto.state == UIGestureRecognizerStateCancelled) {
+    if (gesto.state == UIGestureRecognizerStateBegan) {
         CGPoint ponto = [gesto locationInView:self.tableView];
         NSIndexPath *index = [self.tableView indexPathForRowAtPoint:ponto];
         
@@ -46,8 +46,6 @@
             NSLog(@"Favoritaaaahhh Boioolllaaa");
         }
     }
-    
-
 }
 
 
@@ -55,11 +53,14 @@
     [super didReceiveMemoryWarning];
 }
 
+
+# pragma mark - SEGUE Banda Favoritas
+
 -(void) favoritoSegue {
-    NSLog(@"Bandas preferidas");
-    for (Banda *banda in _bandaDao.bandasPreferidas) {
-        NSLog(@"%@",banda.nome);
-    }
+    BandaFavoritaViewController *favoriteController = [BandaFavoritaViewController new];
+    
+    //Inicia o form na Storyboard
+    [self.navigationController pushViewController:favoriteController animated:YES];
 }
 
 
@@ -82,11 +83,33 @@
         cell = [[BandasTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     }
     
+    cell.layer.cornerRadius = 25;
+
     Banda *banda = [_bandaDao buscaBandaPor:indexPath.row];
+    
     cell.bandaNome.text = banda.nome;
     cell.bandaImagem.image = banda.foto;
     
+    cell.bandaImagem = [self arredondarFoto:cell.bandaImagem];
+
     return cell;
+}
+
+
+/**
+ 
+    Arredondar Foto
+ */
+-(UIImageView*) arredondarFoto: (UIImageView*)imageView{
+    CGRect frame = [imageView frame];
+    frame.size.width = 50;
+    frame.size.height = 50;
+    [imageView setFrame:frame];
+    
+    imageView.layer.cornerRadius = 25;
+    imageView.layer.masksToBounds = YES;
+    
+    return imageView;
 }
 
 
@@ -102,8 +125,28 @@
     }
 }
 
+
+/*
+ ** Traduz os botões ( editar e feito )
+ **/
+-(void) setEditing:(BOOL)editing animated:(BOOL)animated{
+    
+    //chama do super
+    [super setEditing:editing animated:animated];
+    
+    //verifica se esta editando e muda pra feito =)
+    if (editing){
+        self.editButtonItem.title = NSLocalizedString(@"Feito", @"Feito");
+        
+    } else {
+        self.editButtonItem.title = NSLocalizedString(@"Editar", @"Editar");
+    }
+}
+
+
+
 /***
-    Adiciona os botões
+    Adiciona os botões na TableView
  ***/
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     

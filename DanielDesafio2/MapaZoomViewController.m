@@ -14,11 +14,21 @@
 
 @implementation MapaZoomViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _preferenciaUsuarioUtil = [PreferenciaUsuarioUtil new];
+    
+    if (![_preferenciaUsuarioUtil loadCustomObjectWithKey:@"start"]) {
+        [_preferenciaUsuarioUtil saveCustomObject:@"yes" key:@"start"];
+        [self exibirAlert:@"ATENCAO" eComMensagem:@"Sou Foda !"];
+    }
+    
+    
     [self configLocationManager];
-    [self configMap];
     [self configLocalUser];
+    [self configMap];
     
 }
 
@@ -29,7 +39,7 @@
 
 -(void) configLocalUser{
     CLLocationCoordinate2D coordinate = _mapa.userLocation.coordinate;
-    CLLocationDistance distancia = 100;
+    CLLocationDistance distancia = 50;
     MKCoordinateRegionMakeWithDistance(coordinate, distancia, distancia);
 }
 
@@ -40,11 +50,94 @@
     [_locationManager startUpdatingLocation]; //Inicia a busca da localizacao do usuario
 }
 
+/**
+ **** Exibe Alerta
+ */
+-(void) exibirAlert:(NSString*) titulo eComMensagem:(NSString *) mensagem {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titulo
+                                                                   message:mensagem
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    NSLog(@"mudou !");
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = mapView.userLocation.coordinate;
+    mapRegion.span.latitudeDelta = 0.2;
+    mapRegion.span.longitudeDelta = 0.2;
+    
+    [mapView setRegion:mapRegion animated: YES];
+}
+
+
+/***
+ ZOOM para os annotation, dar o zoom onde estiver pino ou sua localizacao
+ ***/
+-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray<MKAnnotationView *> *)views {
+    
+    MKAnnotationView *view = [views objectAtIndex:0];
+    CLLocationDistance distancia = 50;
+    MKCoordinateRegion regiao = MKCoordinateRegionMakeWithDistance([view.annotation coordinate], distancia, distancia);
+    
+    [self.mapa setRegion:regiao animated:YES];
+}
+
+/***
+ Configuracao inicial para acoes de reconhecimento de gesto
+ ***/
+-(void) addGestureRecognize {
+    UILongPressGestureRecognizer *toqueLongo = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(adicionaPino:)];
+    toqueLongo.minimumPressDuration = 1;
+    [self.mapa addGestureRecognizer:toqueLongo];
+}
+
+
+/***
+ Mensagem que esta sendo executada pelo @selector do GestureRecognize
+ ***/
+- (void) adicionaPino: (UIGestureRecognizer *) gesto {
+    
+    if (gesto.state == UIGestureRecognizerStateBegan) {
+        
+        //Pega o ponto do gesto na view
+        CGPoint ponto = [gesto locationInView:self.view];
+        
+        //Converte a posicao do toque para coordenada no mapa
+        CLLocationCoordinate2D coordenadas = [self.mapa convertPoint:ponto toCoordinateFromView:self.mapa];
+        
+        //Cria o pino e sua coordenada
+        MKPointAnnotation *pino = [MKPointAnnotation new];
+        pino.coordinate = coordenadas;
+        
+        //Adiciona o pino no mapa
+        [self.mapa addAnnotation:pino];
+    }
+}
+
+/***
+ 
+    Recebe um Tap no Pin
+ **/
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    NSLog(@"Pino %@ selecionado", view);
+    [view removeFromSuperview];
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+
 
 
 @end

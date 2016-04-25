@@ -32,6 +32,12 @@
 		18AB0E351CCC1D6B00F9CB70 /* slipknot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18AB0E2B1CCC1D6B00F9CB70 /* slipknot.jpg */; };
 		18AB0E361CCC1D6B00F9CB70 /* thridDay.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AB0E2C1CCC1D6B00F9CB70 /* thridDay.png */; };
 		18AB0E371CCC1D6B00F9CB70 /* wesleySafadao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18AB0E2D1CCC1D6B00F9CB70 /* wesleySafadao.jpg */; };
+		18DDE4BF1CCDA1A50072882D /* BandaFavoritaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE4BD1CCDA1A50072882D /* BandaFavoritaViewController.m */; };
+		18DDE4C01CCDA1A50072882D /* BandaFavoritaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DDE4BE1CCDA1A50072882D /* BandaFavoritaViewController.xib */; };
+		18DDE4C21CCDA81D0072882D /* NibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DDE4C11CCDA81D0072882D /* NibCell.xib */; };
+		18DDE4C61CCDBEE60072882D /* UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE4C51CCDBEE50072882D /* UIView.m */; };
+		18DDE4C91CCDC2020072882D /* UIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE4C81CCDC2020072882D /* UIImageView.m */; };
+		18DDE4D11CCDC5940072882D /* PreferenciaUsuarioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE4D01CCDC5940072882D /* PreferenciaUsuarioUtil.m */; };
 		DEA324C22E8B53070C42A0A3 /* libPods-DanielDesafio2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D343B2972BD43EEDC7CD2D08 /* libPods-DanielDesafio2.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +77,16 @@
 		18AB0E2B1CCC1D6B00F9CB70 /* slipknot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = slipknot.jpg; sourceTree = "<group>"; };
 		18AB0E2C1CCC1D6B00F9CB70 /* thridDay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thridDay.png; sourceTree = "<group>"; };
 		18AB0E2D1CCC1D6B00F9CB70 /* wesleySafadao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wesleySafadao.jpg; sourceTree = "<group>"; };
+		18DDE4BC1CCDA1A50072882D /* BandaFavoritaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandaFavoritaViewController.h; sourceTree = "<group>"; };
+		18DDE4BD1CCDA1A50072882D /* BandaFavoritaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandaFavoritaViewController.m; sourceTree = "<group>"; };
+		18DDE4BE1CCDA1A50072882D /* BandaFavoritaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandaFavoritaViewController.xib; sourceTree = "<group>"; };
+		18DDE4C11CCDA81D0072882D /* NibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NibCell.xib; sourceTree = "<group>"; };
+		18DDE4C41CCDBEE50072882D /* UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView.h; sourceTree = "<group>"; };
+		18DDE4C51CCDBEE50072882D /* UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView.m; sourceTree = "<group>"; };
+		18DDE4C71CCDC2020072882D /* UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
+		18DDE4C81CCDC2020072882D /* UIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageView.m; sourceTree = "<group>"; };
+		18DDE4CF1CCDC5940072882D /* PreferenciaUsuarioUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenciaUsuarioUtil.h; sourceTree = "<group>"; };
+		18DDE4D01CCDC5940072882D /* PreferenciaUsuarioUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenciaUsuarioUtil.m; sourceTree = "<group>"; };
 		D343B2972BD43EEDC7CD2D08 /* libPods-DanielDesafio2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DanielDesafio2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,6 +125,8 @@
 		185E3DA71CB6096B00699222 /* DanielDesafio2 */ = {
 			isa = PBXGroup;
 			children = (
+				18DDE4CE1CCDC5770072882D /* util */,
+				18DDE4C31CCDBEAF0072882D /* category */,
 				18AB0E061CCC02FB00F9CB70 /* view */,
 				185E3DCB1CB610CB00699222 /* models */,
 				185E3DC71CB6108400699222 /* viewControllers */,
@@ -159,6 +177,9 @@
 				185E3DC91CB610AF00699222 /* AllShowsTableViewController.m */,
 				18AB0DFE1CCC004100F9CB70 /* MapaZoomViewController.h */,
 				18AB0DFF1CCC004100F9CB70 /* MapaZoomViewController.m */,
+				18DDE4BC1CCDA1A50072882D /* BandaFavoritaViewController.h */,
+				18DDE4BD1CCDA1A50072882D /* BandaFavoritaViewController.m */,
+				18DDE4BE1CCDA1A50072882D /* BandaFavoritaViewController.xib */,
 			);
 			name = viewControllers;
 			sourceTree = "<group>";
@@ -177,6 +198,7 @@
 			children = (
 				18AB0E071CCC032300F9CB70 /* BandasTableViewCell.h */,
 				18AB0E081CCC032300F9CB70 /* BandasTableViewCell.m */,
+				18DDE4C11CCDA81D0072882D /* NibCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -197,6 +219,26 @@
 				18AB0E0D1CCC076A00F9CB70 /* BandaDao.m */,
 			);
 			name = dao;
+			sourceTree = "<group>";
+		};
+		18DDE4C31CCDBEAF0072882D /* category */ = {
+			isa = PBXGroup;
+			children = (
+				18DDE4C41CCDBEE50072882D /* UIView.h */,
+				18DDE4C51CCDBEE50072882D /* UIView.m */,
+				18DDE4C71CCDC2020072882D /* UIImageView.h */,
+				18DDE4C81CCDC2020072882D /* UIImageView.m */,
+			);
+			name = category;
+			sourceTree = "<group>";
+		};
+		18DDE4CE1CCDC5770072882D /* util */ = {
+			isa = PBXGroup;
+			children = (
+				18DDE4CF1CCDC5940072882D /* PreferenciaUsuarioUtil.h */,
+				18DDE4D01CCDC5940072882D /* PreferenciaUsuarioUtil.m */,
+			);
+			name = util;
 			sourceTree = "<group>";
 		};
 		1BDFDC4C2790B7CC26E1CC28 /* Frameworks */ = {
@@ -280,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18AB0E351CCC1D6B00F9CB70 /* slipknot.jpg in Resources */,
+				18DDE4C01CCDA1A50072882D /* BandaFavoritaViewController.xib in Resources */,
 				185E3DBB1CB6096B00699222 /* LaunchScreen.storyboard in Resources */,
 				18AB0E361CCC1D6B00F9CB70 /* thridDay.png in Resources */,
 				18AB0E301CCC1D6B00F9CB70 /* maroon5.jpeg in Resources */,
@@ -291,6 +334,7 @@
 				185E3DD21CB6142700699222 /* dumbbell.png in Resources */,
 				18AB0E341CCC1D6B00F9CB70 /* redhotChilipeppers.png in Resources */,
 				18AB0E311CCC1D6B00F9CB70 /* metalica.jpg in Resources */,
+				18DDE4C21CCDA81D0072882D /* NibCell.xib in Resources */,
 				185E3DD01CB613DF00699222 /* animal-footprint.png in Resources */,
 				185E3DB31CB6096B00699222 /* Main.storyboard in Resources */,
 				18AB0E2F1CCC1D6B00F9CB70 /* livresParaAdorar.jpg in Resources */,
@@ -352,9 +396,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18DDE4BF1CCDA1A50072882D /* BandaFavoritaViewController.m in Sources */,
 				185E3DCA1CB610AF00699222 /* AllShowsTableViewController.m in Sources */,
 				18AB0E091CCC032300F9CB70 /* BandasTableViewCell.m in Sources */,
 				185E3DB61CB6096B00699222 /* DanielDesafio2.xcdatamodeld in Sources */,
+				18DDE4C91CCDC2020072882D /* UIImageView.m in Sources */,
+				18DDE4D11CCDC5940072882D /* PreferenciaUsuarioUtil.m in Sources */,
+				18DDE4C61CCDBEE60072882D /* UIView.m in Sources */,
 				18AB0E001CCC004100F9CB70 /* MapaZoomViewController.m in Sources */,
 				185E3DAD1CB6096B00699222 /* AppDelegate.m in Sources */,
 				185E3DCE1CB610E800699222 /* Banda.m in Sources */,

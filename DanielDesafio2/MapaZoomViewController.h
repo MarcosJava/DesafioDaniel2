@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "PreferenciaUsuarioUtil.h"
 
 @interface MapaZoomViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapa;
 @property CLLocationManager *locationManager;
+@property PreferenciaUsuarioUtil *preferenciaUsuarioUtil;
 
 
 @end
