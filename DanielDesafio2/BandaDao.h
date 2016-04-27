@@ -16,6 +16,7 @@
 
 + (id) bandaDaoInstance;
 - (Banda *) buscaBandaPor: (int) indice;
+- (Banda *) buscaBandaPreferidaPor: (int) indice;
 - (void) removeBanda: (int) indice;
 - (void) addBandaPreferida: (int) indiceDaBanda;
 - (int) countOfBandas;

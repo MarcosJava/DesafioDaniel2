@@ -35,8 +35,6 @@
 		18DDE4BF1CCDA1A50072882D /* BandaFavoritaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE4BD1CCDA1A50072882D /* BandaFavoritaViewController.m */; };
 		18DDE4C01CCDA1A50072882D /* BandaFavoritaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DDE4BE1CCDA1A50072882D /* BandaFavoritaViewController.xib */; };
 		18DDE4C21CCDA81D0072882D /* NibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DDE4C11CCDA81D0072882D /* NibCell.xib */; };
-		18DDE4C61CCDBEE60072882D /* UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE4C51CCDBEE50072882D /* UIView.m */; };
-		18DDE4C91CCDC2020072882D /* UIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE4C81CCDC2020072882D /* UIImageView.m */; };
 		18DDE4D11CCDC5940072882D /* PreferenciaUsuarioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DDE4D01CCDC5940072882D /* PreferenciaUsuarioUtil.m */; };
 		DEA324C22E8B53070C42A0A3 /* libPods-DanielDesafio2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D343B2972BD43EEDC7CD2D08 /* libPods-DanielDesafio2.a */; };
 /* End PBXBuildFile section */
@@ -81,10 +79,6 @@
 		18DDE4BD1CCDA1A50072882D /* BandaFavoritaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandaFavoritaViewController.m; sourceTree = "<group>"; };
 		18DDE4BE1CCDA1A50072882D /* BandaFavoritaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandaFavoritaViewController.xib; sourceTree = "<group>"; };
 		18DDE4C11CCDA81D0072882D /* NibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NibCell.xib; sourceTree = "<group>"; };
-		18DDE4C41CCDBEE50072882D /* UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView.h; sourceTree = "<group>"; };
-		18DDE4C51CCDBEE50072882D /* UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView.m; sourceTree = "<group>"; };
-		18DDE4C71CCDC2020072882D /* UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
-		18DDE4C81CCDC2020072882D /* UIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageView.m; sourceTree = "<group>"; };
 		18DDE4CF1CCDC5940072882D /* PreferenciaUsuarioUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenciaUsuarioUtil.h; sourceTree = "<group>"; };
 		18DDE4D01CCDC5940072882D /* PreferenciaUsuarioUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenciaUsuarioUtil.m; sourceTree = "<group>"; };
 		D343B2972BD43EEDC7CD2D08 /* libPods-DanielDesafio2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DanielDesafio2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				18DDE4CE1CCDC5770072882D /* util */,
-				18DDE4C31CCDBEAF0072882D /* category */,
 				18AB0E061CCC02FB00F9CB70 /* view */,
 				185E3DCB1CB610CB00699222 /* models */,
 				185E3DC71CB6108400699222 /* viewControllers */,
@@ -219,17 +212,6 @@
 				18AB0E0D1CCC076A00F9CB70 /* BandaDao.m */,
 			);
 			name = dao;
-			sourceTree = "<group>";
-		};
-		18DDE4C31CCDBEAF0072882D /* category */ = {
-			isa = PBXGroup;
-			children = (
-				18DDE4C41CCDBEE50072882D /* UIView.h */,
-				18DDE4C51CCDBEE50072882D /* UIView.m */,
-				18DDE4C71CCDC2020072882D /* UIImageView.h */,
-				18DDE4C81CCDC2020072882D /* UIImageView.m */,
-			);
-			name = category;
 			sourceTree = "<group>";
 		};
 		18DDE4CE1CCDC5770072882D /* util */ = {
@@ -400,9 +382,7 @@
 				185E3DCA1CB610AF00699222 /* AllShowsTableViewController.m in Sources */,
 				18AB0E091CCC032300F9CB70 /* BandasTableViewCell.m in Sources */,
 				185E3DB61CB6096B00699222 /* DanielDesafio2.xcdatamodeld in Sources */,
-				18DDE4C91CCDC2020072882D /* UIImageView.m in Sources */,
 				18DDE4D11CCDC5940072882D /* PreferenciaUsuarioUtil.m in Sources */,
-				18DDE4C61CCDBEE60072882D /* UIView.m in Sources */,
 				18AB0E001CCC004100F9CB70 /* MapaZoomViewController.m in Sources */,
 				185E3DAD1CB6096B00699222 /* AppDelegate.m in Sources */,
 				185E3DCE1CB610E800699222 /* Banda.m in Sources */,

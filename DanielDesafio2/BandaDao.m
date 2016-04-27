@@ -13,6 +13,7 @@
 
 
 @synthesize bandas = _bandas;
+
 static BandaDao *defaultBandaDao = nil;
 
 +(id) bandaDaoInstance {
@@ -43,7 +44,7 @@ static BandaDao *defaultBandaDao = nil;
     Banda *marron = [[Banda alloc]initWithNome:@"Morron 5" eFoto:[UIImage imageNamed:@"maroon5.jpeg"]];
     Banda *metalica = [[Banda alloc]initWithNome:@"Metalica" eFoto:[UIImage imageNamed:@"metalica.jpg"]];
     Banda *nxZero = [[Banda alloc]initWithNome:@"NX Zero" eFoto:[UIImage imageNamed:@"nxZero.jpeg"]];
-    Banda *redHotChilipeppers = [[Banda alloc]initWithNome:@"Red Hot Chilipeppers" eFoto:[UIImage imageNamed:@"redHotChilipeppers.png"]];
+    Banda *redHotChilipeppers = [[Banda alloc]initWithNome:@"Red Hot Chilipeppers" eFoto:[UIImage imageNamed:@"redhotChilipeppers.png"]];
     Banda *slipknot = [[Banda alloc]initWithNome:@"Slipknot" eFoto:[UIImage imageNamed:@"slipknot.jpg"]];
     Banda *thridDay = [[Banda alloc]initWithNome:@"3Th Day" eFoto:[UIImage imageNamed:@"thridDay.png"]];
     Banda *wesleySafadao = [[Banda alloc]initWithNome:@"Wesley Safadao" eFoto:[UIImage imageNamed:@"wesleySafadao.jpg"]];
@@ -67,7 +68,9 @@ static BandaDao *defaultBandaDao = nil;
 - (Banda *) buscaBandaPor: (int) indice{
     return [_bandas objectAtIndex:indice];
 }
-
+- (Banda *) buscaBandaPreferidaPor: (int) indice{
+    return [_bandasPreferidas objectAtIndex:indice];
+}
 
 
 /****
@@ -92,10 +95,13 @@ static BandaDao *defaultBandaDao = nil;
     Retorna o tamanho dos arrays
 ****/
 - (int) countOfBandas{
-    return [_bandas count];
+    NSNumber *number = [NSNumber numberWithInteger:[_bandas count]]; //Remover Warning
+    return [number intValue];
 }
 - (int) countOfBandasPreferidas{
-    return [_bandasPreferidas count];
+    NSNumber *number = [NSNumber numberWithInteger:[_bandasPreferidas count]]; //Remover Warning
+    return [number intValue];
+
 }
 
 

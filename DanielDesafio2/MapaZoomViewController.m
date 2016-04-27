@@ -17,19 +17,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _activyPin = NO;
+    [self alertStart];
+    [self configLocationManager];
+    [self configLocalUser];
+    [self configMap];
+    [self addGestureRecognize];
     
+}
+
+-(void) alertStart {
     _preferenciaUsuarioUtil = [PreferenciaUsuarioUtil new];
     
     if (![_preferenciaUsuarioUtil loadCustomObjectWithKey:@"start"]) {
         [_preferenciaUsuarioUtil saveCustomObject:@"yes" key:@"start"];
         [self exibirAlert:@"ATENCAO" eComMensagem:@"Sou Foda !"];
     }
-    
-    
-    [self configLocationManager];
-    [self configLocalUser];
-    [self configMap];
-    
 }
 
 -(void) configMap {
@@ -51,7 +54,7 @@
 }
 
 /**
- **** Exibe Alerta
+ **** Exibe Alerta + Pode ser Util
  */
 -(void) exibirAlert:(NSString*) titulo eComMensagem:(NSString *) mensagem {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:titulo
@@ -65,15 +68,14 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-
+/***
+ ZOOM para a localizacao do usuario
+ ***/
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     NSLog(@"mudou !");
-    MKCoordinateRegion mapRegion;
-    mapRegion.center = mapView.userLocation.coordinate;
-    mapRegion.span.latitudeDelta = 0.2;
-    mapRegion.span.longitudeDelta = 0.2;
-    
+    CLLocationDistance distancia = 80;
+    MKCoordinateRegion mapRegion = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, distancia, distancia);
     [mapView setRegion:mapRegion animated: YES];
 }
 
@@ -83,11 +85,15 @@
  ***/
 -(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray<MKAnnotationView *> *)views {
     
-    MKAnnotationView *view = [views objectAtIndex:0];
-    CLLocationDistance distancia = 50;
-    MKCoordinateRegion regiao = MKCoordinateRegionMakeWithDistance([view.annotation coordinate], distancia, distancia);
+    // Validacao para nao ficar toda hora dando zoom no pino
+    if (_activyPin) {
+        MKAnnotationView *view = [views objectAtIndex:0];
+        CLLocationDistance distancia = 50;
+        MKCoordinateRegion regiao = MKCoordinateRegionMakeWithDistance([view.annotation coordinate], distancia, distancia);
+        _activyPin = NO;
+        [self.mapa setRegion:regiao animated:YES];
+    }
     
-    [self.mapa setRegion:regiao animated:YES];
 }
 
 /***
@@ -117,13 +123,14 @@
         MKPointAnnotation *pino = [MKPointAnnotation new];
         pino.coordinate = coordenadas;
         
+        _activyPin = YES;
+        
         //Adiciona o pino no mapa
         [self.mapa addAnnotation:pino];
     }
 }
 
 /***
- 
     Recebe um Tap no Pin
  **/
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {

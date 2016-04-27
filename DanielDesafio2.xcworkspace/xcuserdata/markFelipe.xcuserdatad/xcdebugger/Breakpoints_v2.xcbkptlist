@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DanielDesafio2/BandaDao.m"
-            timestampString = "483159555.987135"
+            timestampString = "483422210.72305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-countOfBandas"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,13 +26,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DanielDesafio2/AllShowsTableViewController.m"
-            timestampString = "483245387.800687"
+            timestampString = "483424402.073955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-tableView:editActionsForRowAtIndexPath:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AllShowsTableViewController tableView:editActionsForRowAtIndexPath:]"
+                  moduleName = "DanielDesafio2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/markFelipe/Documents/workspaces/xcode/Desafios%20do%20Daniel/DanielDesafio2/DanielDesafio2/AllShowsTableViewController.m"
+                  timestampString = "483424434.631656"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__70-[AllShowsTableViewController tableView:editActionsForRowAtIndexPath:]_block_invoke"
+                  moduleName = "DanielDesafio2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/markFelipe/Documents/workspaces/xcode/Desafios%20do%20Daniel/DanielDesafio2/DanielDesafio2/AllShowsTableViewController.m"
+                  timestampString = "483424434.631901"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

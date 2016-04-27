@@ -17,19 +17,28 @@
 @implementation AllShowsTableViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     _bandaDao = [BandaDao bandaDaoInstance];
+    
     self.tableView.delegate = self;
+    
+    [self configNavigationBarButtonItem];
+    [self testandoGesture];
+}
+
+-(void) configNavigationBarButtonItem {
+    
+    self.editButtonItem.title = @"Editar";
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *barButtonFavorito = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(favoritoSegue)];
     self.navigationItem.rightBarButtonItem = barButtonFavorito;
-    
-    
-    [self testandoGesture];
 }
 
 -(void) testandoGesture{
+    
     UISwipeGestureRecognizer *gesture = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperr:)];
     gesture.direction = UISwipeGestureRecognizerDirectionRight;
     
@@ -54,8 +63,12 @@
 }
 
 
-# pragma mark - SEGUE Banda Favoritas
+# pragma mark - SEGUES
 
+
+/***
+    Segue do NavigationItem
+ ***/
 -(void) favoritoSegue {
     BandaFavoritaViewController *favoriteController = [BandaFavoritaViewController new];
     
@@ -83,9 +96,11 @@
         cell = [[BandasTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     }
     
+    //Deixando a celula arredondada
     cell.layer.cornerRadius = 25;
-
-    Banda *banda = [_bandaDao buscaBandaPor:indexPath.row];
+    
+    _bandaIndex = [NSNumber numberWithInteger:indexPath.row];
+    Banda *banda = [_bandaDao buscaBandaPor: [_bandaIndex intValue]];
     
     cell.bandaNome.text = banda.nome;
     cell.bandaImagem.image = banda.foto;
@@ -115,13 +130,30 @@
 
 #pragma mark - Table view delegates
 
+/***
+    Vai existir o botão de editar ?
+ ***/
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
+/***
+    Como será o botão que ficaria no indexPath;
+ ***/
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+/***
+    Ação do editar, se foi remover ou insert
+ ***/
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSLog(@"delete");
+    }
+    if (editingStyle == UITableViewCellEditingStyleInsert) {
+        NSLog(@"insert");
     }
 }
 
@@ -131,7 +163,6 @@
  **/
 -(void) setEditing:(BOOL)editing animated:(BOOL)animated{
     
-    //chama do super
     [super setEditing:editing animated:animated];
     
     //verifica se esta editando e muda pra feito =)
@@ -144,32 +175,30 @@
 }
 
 
-
 /***
     Adiciona os botões na TableView
  ***/
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Favorito" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
-        NSLog(@"favoritando !");
-        
-        //[self.tableView reloadSections:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [_bandaDao addBandaPreferida:indexPath.row];
+    UITableViewRowAction *favoritaAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Favorito" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        _bandaIndex = [NSNumber numberWithInteger:indexPath.row]; //Remove Warning
+        [_bandaDao addBandaPreferida: [_bandaIndex intValue]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade]; // efeito + reloadData
 
     }];
-    editAction.backgroundColor = [UIColor blueColor];
+    favoritaAction.backgroundColor = [UIColor blueColor];
     
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Excluir"  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
-        [_bandaDao removeBanda:indexPath.row];
+        _bandaIndex = [NSNumber numberWithInteger:indexPath.row]; //Remove Warning
+        [_bandaDao removeBanda: [_bandaIndex intValue]];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade]; // efeito + reloadData
         NSLog(@"removendo !");
         
     }];
     deleteAction.backgroundColor = [UIColor redColor];
     
-    return @[deleteAction,editAction];
+    return @[deleteAction,favoritaAction];
 }
 
 @end

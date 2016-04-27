@@ -14,8 +14,8 @@
 @interface BandaFavoritaViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property BandaDao *bandaDao;
-@property NSMutableArray *bandasFavoritas;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic,strong) NSNumber *bandaIndex;
+
 
 @end

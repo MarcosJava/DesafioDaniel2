@@ -12,6 +12,7 @@
 
 @interface MapaZoomViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapa;
+@property (assign, nonatomic) BOOL activyPin;
 @property CLLocationManager *locationManager;
 @property PreferenciaUsuarioUtil *preferenciaUsuarioUtil;
 

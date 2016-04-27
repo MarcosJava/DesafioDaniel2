@@ -25,34 +25,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self populandoDadosArrays];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
     [self ligarComXibsCells];
     [self criarViewLayout];
     
 }
 
--(void) populandoDadosArrays {
-    
-    NSMutableArray *firstSection = [[NSMutableArray alloc] init];
-    NSMutableArray *secondSection = [[NSMutableArray alloc] init];
-    
-    for (int i=0; i<50; i++) {
-        [firstSection addObject:[NSString stringWithFormat:@"Cell %d", i]];
-        [secondSection addObject:[NSString stringWithFormat:@"item %d", i]];
-    }
-    self.dataArray = [[NSArray alloc] initWithObjects:firstSection,secondSection, nil];
-}
-
+/***
+    VIEW Xibs, feito para definir cada imagem no CollectionView
+ ***/
 -(void) ligarComXibsCells {
-    
     UINib *cellNib = [UINib nibWithNibName:@"NibCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"cvCell"];
 }
 
 
-
--(void) criarViewLayout {
+/**
+ **** Exibe Alerta + Pode ser Util
+ */
+-(void) exibirAlert:(NSString*) titulo eComMensagem:(NSString *) mensagem {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titulo
+                                                                   message:mensagem
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - COLECTION VIEW DATASOURCE
+
+/***
+    CRIA LAYOUT PARA COLLECTIONVIEW
+***/
+-(void) criarViewLayout {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(100, 100)];//mesmo valor que no xibs
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
@@ -61,12 +70,6 @@
 
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //Pega o section das arrays
-//    NSMutableArray *data = [self.dataArray objectAtIndex:indexPath.section];
-//    
-//    //Pega o dados do Arrays
-//    NSString *cellData = [data objectAtIndex:indexPath.row];
     
     static NSString *cellIdentifier = @"cvCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -79,18 +82,32 @@
     
 }
 
-
+/***
+    SECTION igual ao TableView, não terá section
+ ***/
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    //return [self.dataArray count];
-   // return [_bandaDao countOfBandasPreferidas];
     return 1;
 }
 
+
+
+/***
+    NUMEROS DE LINHA IGUAL TableView
+ ***/
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    NSMutableArray *sectionArray = [self.dataArray objectAtIndex:section];
-//    NSMutableArray *sectionArray = [_bandaDao.bandasPreferidas objectAtIndex:section];
-//    return [sectionArray count];
     return [_bandaDao countOfBandasPreferidas];
+}
+
+
+
+#pragma mark - UICollectionView Delegate
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //Para tirar warning
+    _bandaIndex = [NSNumber numberWithInteger:indexPath.row];
+    Banda *banda = [_bandaDao buscaBandaPreferidaPor: [_bandaIndex intValue]];
+    [self exibirAlert:@"BANDA PREFERIDA " eComMensagem:banda.nome];
+    
 }
 
 

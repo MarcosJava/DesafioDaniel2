@@ -13,6 +13,7 @@
 #import "BandaDao.h"
 
 @interface AllShowsTableViewController : UITableViewController<MGSwipeTableCellDelegate>
-@property (strong) BandaDao *bandaDao;
-@property (strong) Banda *banda;
+@property (strong, nonatomic) BandaDao *bandaDao;
+@property (strong, nonatomic) Banda *banda;
+@property (strong,nonatomic) NSNumber *bandaIndex;
 @end
